@@ -1,29 +1,37 @@
 package com.watchparty.server.model;
 
 import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonAnyFormatVisitor;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
 import javax.persistence.*;
 import java.sql.Time;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.UUID;
 
 @Entity
 @NoArgsConstructor
+@Getter
+@Setter
 @AllArgsConstructor
 @Table(name = "room")
 public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long roomId;
+    private Long roomId;
     private String roomTitle;
-    private String roomDescription;
-    private Time creationTime;
-    private String password;
-    private String owner;
-    private String vanity;
+    private LocalDateTime creationTime;
     private boolean isChatDisabled;
-    private boolean isSubRoom;
-    private Time lastUpdatedTime;
+    private LocalDateTime lastUpdatedTime;
     private String mediaPath;
-    private JsonAnyFormatVisitor data;
+    private String roomTopicId;
+
+    public Room(String roomTitle, String mediaPath) {
+        this.setRoomTitle(roomTitle);
+        this.setMediaPath(mediaPath);
+        this.setCreationTime(LocalDateTime.now());
+        this.setLastUpdatedTime(LocalDateTime.now());
+        this.setMediaPath(mediaPath);
+        this.setRoomTopicId("roomtopic"+UUID.randomUUID().toString());
+    }
 }
