@@ -1,0 +1,15 @@
+package com.watchparty.server.model;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@NoArgsConstructor
+@Getter
+@Setter
+@AllArgsConstructor
+public class AddMediaObj {
+    private String mediaPath;
+    private String roomTopicId;
+}
